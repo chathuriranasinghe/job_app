@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:job_app/Screens/homepage/widgets/category.dart';
 import 'package:job_app/Screens/homepage/widgets/greetings.dart';
 import 'package:job_app/Screens/homepage/widgets/popular_row.dart';
+import 'package:job_app/Screens/homepage/widgets/recent_column.dart';
 import 'package:job_app/Services/get_data.dart';
 
 import 'widgets/app_bar.dart';
@@ -49,31 +50,7 @@ class _HomePageState extends State<HomePage> {
                 const SizedBox(
                   height: 10,
                 ),
-                Column(
-                    children: List.generate(data.getJobData().length, (index) {
-                  return Padding(
-                    padding: const EdgeInsets.all(4.0),
-                    child: Container(
-                      height: 80,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(15)),
-                      child: ListTile(
-                        leading: CircleAvatar(
-                          backgroundImage:
-                              NetworkImage(data.getJobData()[index].logo),
-                          radius: 25,
-                        ),
-                        title: Text(data.getJobData()[index].title),
-                        subtitle: Text(
-                          "${data.getJobData()[index].companyName} - ${data.getJobData()[index].type}",
-                          style: const TextStyle(color: Colors.grey),
-                        ),
-                        trailing: Text(data.getJobData()[index].time),
-                      ),
-                    ),
-                  );
-                })),
+                RecentColumn(data: data),
               ],
             ),
           ),
